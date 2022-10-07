@@ -1,0 +1,81 @@
+***api.js***
+
+
+const express=require('express');
+const app=express();
+require('./config');
+const p=require('./schema1.js');
+
+app.use(express.json());
+
+app.get("/show",async(req,res)=>{
+    let info=await p.find();
+    res.send(info);
+})
+
+
+
+app.post("/",async(req,res)=>{
+    let info= new p(req.body);
+    const result=await info.save();
+    res.send(result);
+})
+
+app.listen(5050);
+
+
+
+
+*****config.js....
+
+
+const m=require('mongoose');
+// m.connect("mongodb://0.0.0.0:27017/ANEM")
+m.connect("mongodb://localhost:27017/ANEM")
+
+
+
+****schema1.js***
+
+
+
+const m=require('mongoose');
+const pschema=m.Schema({
+    fname:String,
+    lname:String,
+    dob:String,
+    email:String,
+    gender:String,
+    country:String,
+    state:String,
+    city:String,
+    address:String,
+    pincode:Number
+});
+module.exports=m.model("person",pschema); //model name=collection name
+
+
+
+
+
+
+fname
+"vaishu"
+lname
+"patil"
+dob
+"12Aug"
+email
+"vai27@gmail.com"
+gender
+"female"
+country
+"india"
+state
+"maharashtra"
+city
+"latur"
+address
+"udgir"
+pincode
+413514
