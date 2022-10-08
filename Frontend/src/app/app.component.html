@@ -1,0 +1,200 @@
+<br>
+
+<div style="margin:auto;">
+  
+  <nav class="navbar navbar-light" style="background-color: orange;border:5mm;border:outset; border-bottom-width:1.5mm; border-right-width:1.5mm; border-color:rgb(196, 201, 201);">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Angular 12 CRUD Example </span>
+    </div>
+  </nav>
+  <br>
+  <br>
+  
+
+  
+<form #studentform="ngForm" (ngSubmit)="onSubmit(studentform)">
+
+  <table>    
+    
+    <tr>
+
+      <!--first name-->
+        <td><input type="text" name="fname" placeholder="First Name" class="form-control border-top-0 border-end-0 border-start-0" required minlength="5" maxlength="10"  id="fname" [ngModel]="fname" #uname="ngModel" pattern="^[a-z]*">
+          <div class="text-danger" *ngIf="uname.errors && uname.dirty && uname.invalid ">
+          <p *ngIf="uname.errors?.['required']"> First Name is Required</p>
+          <p *ngIf="uname.errors?.['minlength']">Name should be 5 characters</p>
+          <p *ngIf="uname.errors?.['maxlength']">Maximun 12 charaters allowed</p>
+          <p *ngIf="uname.errors?.['pattern']">Only small characters are allowed</p>
+          </div>
+          <div class="text-danger" *ngIf="studentform.submitted && uname.errors && uname.invalid "> 
+          <p *ngIf="uname.errors?.['required']"> First Name is Required</p> </div>
+        </td>
+
+      <!--last name -->
+        <td><input type="text" name="lname" placeholder="Last Name" class="form-control border-top-0 border-end-0 border-start-0" required maxlength="15"  id="lname" [ngModel]="lname" #lname1="ngModel" pattern="^[a-z]*">
+          <div class="text-danger" *ngIf="lname1.errors && lname1.dirty && lname1.invalid ">
+          <p *ngIf="lname1.errors?.['required']"> Last Name is Required</p>
+          <p *ngIf="lname1.errors?.['maxlength']">Maximun 12 charaters allowed</p>
+          <p *ngIf="lname1.errors?.['pattern']">Only small characters are allowed</p>
+          </div>
+          <div class="text-danger" *ngIf="studentform.submitted && lname1.errors && lname1.invalid "> 
+            <p *ngIf="lname1.errors?.['required']"> Last Name is Required</p> </div>
+        </td>
+      
+       
+    
+
+      <!-- email  -->
+        <td ><input type="text" name="email" placeholder="Email Address" class="form-control border-top-0 border-end-0 border-start-0"  required id="email" [ngModel]="email" #email1="ngModel" pattern="[a-z0-9]+@+[gmail.com]*">
+          <div class="text-danger" *ngIf="email1.errors && email1.dirty && email1.invalid ">
+            <p *ngIf="email1.errors?.['required']"> Email is Required</p>
+            <p *ngIf="email1.errors?.['pattern']">Invalid</p>
+          </div>  
+          <div class="text-danger" *ngIf=" studentform.submitted && email1.errors && email1.invalid ">
+              <p *ngIf="email1.errors?.['required']"> Email is Required</p>
+            </div>
+        </td>
+      </tr>
+      <tr>
+
+        <!--gender-->
+
+        <td><label for="gender" class="radio-inline">Gender : </label>&nbsp;
+         <input type="radio" name="gen" value="Male" id="gender" required [ngModel]="gender"  #gen1="ngModel"> Male 
+        <input type="radio" name="gen" value="Female" id="gender" required [ngModel]="gender"  #gen1="ngModel"> Female
+            <div class="text-danger" *ngIf=" studentform.submitted && gen1.errors && gen1.invalid ">
+            <p *ngIf="gen1.errors?.['required']">Select Gender</p>
+            </div>
+        </td>
+
+         <!--date of bith-->
+         <td><input type="date" name="dob" placeholder="Date of Birth" class="form-control border-top-0 border-end-0 border-start-0" required maxlength="15"  id="dob" [ngModel]="dob" #dob1="ngModel">
+          <div class="text-danger" *ngIf="studentform.submitted && dob1.errors && dob1.invalid ">
+            <p *ngIf="dob1.errors?.['required']">Date of Birth is Required</p>
+          </div>
+      </td>
+    
+      <!--country -->
+      <td>
+        &nbsp; <select id="country" name="country" placeholder="Select Country" required [ngModel]="country" #country1="ngModel" >
+          <option value="" disabled selected hidden> Country </option>
+           <option value="India">India</option>
+           <option value="Pakistan">Pakistan</option>
+           <option value="Nepal">Nepal</option>
+           <option value="China">China</option>
+           <option value="Bhutan">Bhutan</option>
+           <option value="Afganistan">Afganistan</option>
+           <option value="Japan">Japan</option>
+           <option value="Russia">Russia</option>
+           <option value="Iran">Iran</option>
+           <option value="Israel">Israel</option>
+           <option value="Turki">Turki</option>
+           <option value="Thailand">Thailand</option>
+           <option value="Singapor">Singapor</option>
+         </select>&nbsp;&nbsp;
+         <div class="text-danger" *ngIf="country1.errors && studentform.submitted && country1.invalid ">
+           <p *ngIf="country1.errors?.['required']">Select Country</p>
+         </div>
+      
+      <!--state-->
+    
+            <select id="state" name="state" placeholder="Select State" required [ngModel]="state" #state1="ngModel" >
+              <option value="" disabled selected hidden> State </option>
+              <option value="Gujrat">Gujrat</option>
+              <option value="Kerla">Kerla</option>
+              <option value="Goa">Goa</option>
+              <option value="Maharastra">Maharastra</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="UP">UP</option>
+              <option value="MP">MP</option>
+              <option value="Mizorm">Mizorm</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Manipur">Manipur</option>
+            </select>
+            <div class="text-danger" *ngIf="state1.errors && studentform.submitted && state1.invalid ">
+              <p *ngIf="state1.errors?.['required']">Select State</p>
+            </div> 
+         </td>
+        </tr>
+        <tr>
+
+         <!--city-->
+        <td><input type="text" name="city" placeholder="City" class="form-control border-top-0 border-end-0 border-start-0" required maxlength="15"  id="city" [ngModel]="city" #city1="ngModel">
+            <div class="text-danger" *ngIf="studentform.submitted && city1.errors && city1.invalid ">
+              <p *ngIf="city1.errors?.['required']">City is Required</p>
+            </div>
+        </td>
+
+        <!--Address -->
+        <td><input type="text" name="address" placeholder="Current Address" class="form-control border-top-0 border-end-0 border-start-0" required maxlength="15"  id="address" [ngModel]="address" #address1="ngModel">
+            <div class="text-danger" *ngIf="studentform.submitted && address1.errors && address1.invalid ">
+              <p *ngIf="address1.errors?.['required']">Address is Required</p>
+            </div>
+        </td>
+
+        <!-- pincode  -->
+        <td><input type="text" name="pincode" placeholder="Pin Code" class="form-control border-top-0 border-end-0 border-start-0" required minlength="6" maxlength="6"  id="pincode" [ngModel]="pincode" #pincode1="ngModel" pattern="[0-9]*">
+          <div class="text-danger" *ngIf="pincode1.errors&& pincode1.dirty && pincode1.invalid ">
+          <p *ngIf="pincode1.errors?.['required']">Pin Code is Required</p>
+          <p *ngIf="pincode1.errors?.['maxlength']">Maximun 6 charaters allowed</p>
+          <p *ngIf="pincode1.errors?.['minlength']">Minimun 6 charaters Required</p>
+          <p *ngIf="pincode1.errors?.['pattern']">Only digits are allowed</p>
+          </div>
+          <div class="text-danger" *ngIf=" studentform.submitted && pincode1.errors && pincode1.invalid ">
+            <p *ngIf="pincode1.errors?.['required']">Pin Code is Required</p>
+          </div>
+      </td>
+     </tr>
+
+  </table>
+
+<br>
+  <div class="contailer text-center">
+    <button type="submit" [disabled]="studentform.invalid">Submit</button>
+    <h3>{{msg}}</h3>
+  </div>
+
+</form>
+</div>
+<hr>
+
+<!---------------------------------------------------------------------------------------------------------->
+
+<br>
+<div class="container text-center">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Date Of Birth</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Address</th>
+                <th scope="col">Country</th>
+                <th scope="col">State</th>
+                <th scope="col">City</th>
+                <th scope="col">Pin Code</th>
+                <th scope="col">Buttons</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of user1; let j = index">
+              
+                <td>{{i.fname}}</td>
+                <td>{{i.lname}}</td>
+                <td>{{i.dob}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.address}}</td>
+                <td>{{i.country}}</td>
+                <td>{{i.state}}</td>
+                <td>{{i.city}}</td>
+                <td>{{i.pincode}}</td>
+                
+                <td><button (click)="remove(i._id,j)">Delete</button> &nbsp;
+                    <button routerLink="/update/{{i._id}}">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
